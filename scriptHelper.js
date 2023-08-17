@@ -44,7 +44,7 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     else if (validateInput(pilot) === 'Is a Number' || validateInput(copilot) === 'Is a Number'){
         alert('Pilot names cannot include integers.');
     }else if (validateInput(cargoLevel) === 'Not a Number' || validateInput(fuelLevel) === 'Not a Number'){
-        alert('Fuel and Cargo levels but be entered as integers');
+        alert('Fuel and Cargo levels must be entered as integers');
     }
 
     //accept pilot and copilot status and report
@@ -54,24 +54,27 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     }
 
-    //validate fuel levels for and update the faultyItems and make list visible with status indicators
+    //validate fuel levels for and update the faultyItems and make list visible with launch status indicators
 
-    if (Number(fuelLevel) < 10000){
-        list.style.visibility = 'visible';
+    if (Number(fuelLevel) < 10000) {
         fuelStatus.innerHTML = 'Not enough fuel to complete mission.';
-        launchstatus.innerHTML = 'Shuttle not ready for launch.';
-        launchstatus.style.color = 'red';
-    }else if (Number(cargoLevel) > 10000){
         list.style.visibility = 'visible';
+        launchstatus.innerHTML = 'Shuttle not ready for launch.';
+        launchstatus.style.color = '#C7254E';
+
+    } else if (Number(cargoLevel) > 10000) {
         cargoStatus.innerHTML = 'Too much cargo to takeoff';
+        list.style.visibility = 'visible';
         launchstatus.innerHTML = 'Shuttle not ready for launch';
-        launchstatus.style.color = 'red';
-    }else if (Number(fuelLevel) > 10000 && Number(cargoLevel) < 10000) {
+        launchstatus.style.color = '#C7254E';
+    
+    } else if (Number(fuelLevel) > 10000 && Number(cargoLevel) < 10000)  {
         list.style.visibility = 'visible';
         fuelStatus.innerHTML = 'Fuel level acceptable for mission';
         cargoStatus.innerHTML = 'Cargo level acceptable for mission.';
         launchstatus.innerHTML = 'Shuttle prepared for Launch';
-        launchstatus.style.color = 'green';
+        launchstatus.style.color = '#419F6A';
+        
     }
 }
 
