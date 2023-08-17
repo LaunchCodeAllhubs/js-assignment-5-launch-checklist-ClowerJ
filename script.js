@@ -20,7 +20,8 @@ const form = document.querySelector("form");
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse = myfetch();
+   let listedPlanetsResponse = myFetch();
+   console.log(listedPlanetsResponse);
    listedPlanetsResponse.then(function (result) {
        listedPlanets = result;
        console.log(listedPlanets);
@@ -28,16 +29,17 @@ const form = document.querySelector("form");
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
 
-       let planets = pickPlanet(listedPlanets);
-       let name = planets.name;
+       let planetPicked = pickPlanet(listedPlanets);
+       
+
+     /*  let name = planets.name;
        let diameter = planets.diameter;
        let star = planets.star;
        let distance = planets.distance;
        let imageUrl = planets.image;
        let moons = planets.moons;
-
-       
-       addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl);
+*/
+       addDestinationInfo(document, planetPicked.name, planetPicked.diameter, planetPicked.star, planetPicked.distance, planetPicked.moons, planetPicked.image);
         
 
    })
