@@ -53,6 +53,26 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     list.style.visibility = 'hidden';
 
     }
+
+    //validate fuel levels for and update the faultyItems and make list visible with status indicators
+
+    if (Number(fuelLevel) < 10000){
+        list.style.visibility = 'visible';
+        fuelStatus.innerHTML = 'Not enough fuel to complete mission.';
+        launchstatus.innerHTML = 'Shuttle not ready for launch.';
+        launchstatus.style.color = 'red';
+    }else if (Number(cargoLevel) > 10000){
+        list.style.visibility = 'visible';
+        cargoStatus.innerHTML = 'Too much cargo to takeoff';
+        launchstatus.innerHTML = 'Shuttle not ready for launch';
+        launchstatus.style.color = 'red';
+    }else if (Number(fuelLevel) > 10000 && Number(cargoLevel) < 10000) {
+        list.style.visibility = 'visible';
+        fuelStatus.innerHTML = 'Fuel level acceptable for mission';
+        cargoStatus.innerHTML = 'Cargo level acceptable for mission.';
+        launchstatus.innerHTML = 'Shuttle prepared for Launch';
+        launchstatus.style.color = 'green';
+    }
 }
 
 async function myFetch() {
