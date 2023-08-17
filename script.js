@@ -28,17 +28,17 @@ const form = document.querySelector("form");
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
 
-       /*let planet = pickPlanet(listedPlanets);
-       let name = planet.name;
-       let diameter = planet.diameter;
-       let star = planet.star;
-       let distance = planet.distance;
-       let imageUrl = planet.image;
-       let moons = planet.moons;
-*/
+       let planets = pickPlanet(listedPlanets);
+       let name = planets.name;
+       let diameter = planets.diameter;
+       let star = planets.star;
+       let distance = planets.distance;
+       let imageUrl = planets.image;
+       let moons = planets.moons;
+
        
        addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl);
-
+        
 
    })
    
