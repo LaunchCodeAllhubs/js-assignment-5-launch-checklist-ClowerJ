@@ -3,17 +3,18 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
+   let missionTarget = document.getElementById('missionTarget');
+   missionTarget.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
+                    <li>Name: ${name}</li>
+                    <li>Diameter: ${diameter} </li>
                     <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
+                    <li>Distance from Earth: ${distance} </li>
+                    <li>Number of Moons: ${moons}</li>
                 </ol>
-                <img src="">
-   */
+                <img src="${imageUrl}"> `
+                   
 }
 // validate user input to test if user has provided a string and return an appropriate reponse for value given
 function validateInput(testInput) {
@@ -48,23 +49,24 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
 
     //accept pilot and copilot status and report
-    else {pilotStatus.innerHTML = `Pilot ${pilot} is READY`;
+    else {
+        pilotStatus.innerHTML = `Pilot ${pilot} is READY`;
     copilotStatus.innerHTML = `Co-Pilot ${copilot} is READY`;
-    list.style.visibility = 'hidden';
+    list.style.visibility = 'visible';
 
     }
 
     //validate fuel levels for and update the faultyItems and make list visible with launch status indicators
-
+    //change status color
     if (Number(fuelLevel) < 10000) {
-        fuelStatus.innerHTML = 'Not enough fuel to complete mission.';
         list.style.visibility = 'visible';
+        fuelStatus.innerHTML = 'Not enough fuel to complete mission.';
         launchstatus.innerHTML = 'Shuttle not ready for launch.';
         launchstatus.style.color = '#C7254E';
 
     } else if (Number(cargoLevel) > 10000) {
-        cargoStatus.innerHTML = 'Too much cargo to takeoff';
         list.style.visibility = 'visible';
+        cargoStatus.innerHTML = 'Too much cargo to takeoff';
         launchstatus.innerHTML = 'Shuttle not ready for launch';
         launchstatus.style.color = '#C7254E';
     
@@ -81,8 +83,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
-        });
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        return response.json()
+    });
 
     return planetsReturned;
 }
