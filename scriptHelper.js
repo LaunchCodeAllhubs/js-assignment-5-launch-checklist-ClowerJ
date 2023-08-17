@@ -15,9 +15,15 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 <img src="">
    */
 }
-
+// validate user input to test if user has provided a string and return an appropriate reponse for value given
 function validateInput(testInput) {
-   
+    if (testInput === "" || testInput === null || testInput === 0) {
+        return `Empty`
+    } else if ((!isNaN(Number(testInput)))) {
+        return `Is a Number`
+    } else {
+        return 'Not a Number'
+    }
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
